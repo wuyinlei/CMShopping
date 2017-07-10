@@ -4,6 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CMShopping.iml" filepath="$PROJECT_DIR$/CMShopping.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cainiao-annotations/cainiao-annotations.iml" filepath="$PROJECT_DIR$/cainiao-annotations/cainiao-annotations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cainiao-compiler/cainiao-compiler.iml" filepath="$PROJECT_DIR$/cainiao-compiler/cainiao-compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cainiao-core/cainiao-core.iml" filepath="$PROJECT_DIR$/cainiao-core/cainiao-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cainiao-ec/cainiao-ec.iml" filepath="$PROJECT_DIR$/cainiao-ec/cainiao-ec.iml" />
     </modules>
   </component>
 </project>
