@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.ruolan.cainiao_core.app.Cainiao;
+import com.ruolan.cainiao_ec.icon.FontEcModule;
 
 
 /**
@@ -21,6 +22,7 @@ public class CMApplication extends Application {
         Cainiao.init(this)
                 .withApiHost("http://127.0.0.1/")
                 .withIcon(new FontAwesomeModule())
+                .withIcon(new FontEcModule())
                 .configure();
     }
 }

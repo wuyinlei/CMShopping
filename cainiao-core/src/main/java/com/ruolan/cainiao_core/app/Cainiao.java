@@ -2,7 +2,7 @@ package com.ruolan.cainiao_core.app;
 
 import android.content.Context;
 
-import java.util.WeakHashMap;
+import java.util.HashMap;
 
 /**
  * Created by wuyinlei on 2017/7/10.
@@ -19,8 +19,12 @@ public final class Cainiao {
         return Configurator.getInstance();
     }
 
-    private static WeakHashMap<String,Object> getConfitgurations(){
+    private static HashMap<String,Object> getConfitgurations(){
         return Configurator.getInstance().getCainiaoConfigs();
+    }
+
+    public static Context getApplication(){
+        return (Context) getConfitgurations().get(ConfigType.APPLICATION_CONTEXT.name());
     }
 
 }

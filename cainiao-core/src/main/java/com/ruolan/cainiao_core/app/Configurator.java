@@ -5,6 +5,7 @@ import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.WeakHashMap;
 
 /**
@@ -15,7 +16,7 @@ import java.util.WeakHashMap;
 
 public class Configurator {
 
-    private static final WeakHashMap<String, Object> CAINIAO_CONFIGS = new WeakHashMap<>();
+    private static final HashMap<String, Object> CAINIAO_CONFIGS = new HashMap<>();
 
     private static final ArrayList<IconFontDescriptor> ICON_FONT_DESCRIPTORS = new ArrayList<>();
 
@@ -28,7 +29,7 @@ public class Configurator {
         private static final Configurator INSTANCE = new Configurator();
     }
 
-    final WeakHashMap<String, Object> getCainiaoConfigs() {
+    final HashMap<String, Object> getCainiaoConfigs() {
         return CAINIAO_CONFIGS;
     }
 
