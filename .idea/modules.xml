@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/cainiao-compiler/cainiao-compiler.iml" filepath="$PROJECT_DIR$/cainiao-compiler/cainiao-compiler.iml" />
       <module fileurl="file://$PROJECT_DIR$/cainiao-core/cainiao-core.iml" filepath="$PROJECT_DIR$/cainiao-core/cainiao-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/cainiao-ec/cainiao-ec.iml" filepath="$PROJECT_DIR$/cainiao-ec/cainiao-ec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cainiao-ui/cainiao-ui.iml" filepath="$PROJECT_DIR$/cainiao-ui/cainiao-ui.iml" />
     </modules>
   </component>
 </project>

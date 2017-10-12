@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/cainiao-compiler" />
             <option value="$PROJECT_DIR$/cainiao-core" />
             <option value="$PROJECT_DIR$/cainiao-ec" />
+            <option value="$PROJECT_DIR$/cainiao-ui" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

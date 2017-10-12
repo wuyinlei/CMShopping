@@ -1,1 +1,1 @@
-include ':app', ':cainiao-annotations', ':cainiao-compiler', ':cainiao-core', ':cainiao-ec'
+include ':app', ':cainiao-annotations', ':cainiao-compiler', ':cainiao-core', ':cainiao-ec', ':cainiao-ui'
