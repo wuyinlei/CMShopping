@@ -19,7 +19,7 @@ public final class Cainiao {
         return Configurator.getInstance();
     }
 
-    private static HashMap<String,Object> getConfitgurations(){
+    public static HashMap<String,Object> getConfitgurations(){
         return Configurator.getInstance().getCainiaoConfigs();
     }
 
