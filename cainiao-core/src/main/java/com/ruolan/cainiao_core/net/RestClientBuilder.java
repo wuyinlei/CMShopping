@@ -1,7 +1,6 @@
 package com.ruolan.cainiao_core.net;
 
 import android.content.Context;
-import android.graphics.Rect;
 
 import com.ruolan.cainiao_core.net.callback.IError;
 import com.ruolan.cainiao_core.net.callback.IFailure;
@@ -9,7 +8,7 @@ import com.ruolan.cainiao_core.net.callback.IRequest;
 import com.ruolan.cainiao_core.net.callback.ISuccess;
 import com.ruolan.cainiao_core.ui.LoaderStyle;
 
-import java.util.Map;
+import java.io.File;
 import java.util.WeakHashMap;
 
 import okhttp3.MediaType;
@@ -31,6 +30,7 @@ public class RestClientBuilder {
     private RequestBody mBody = null;
     private Context mContext = null;
     private LoaderStyle mLoaderStyle = null;
+    private File mFile = null;
 
     public RestClientBuilder() {
     }
@@ -75,6 +75,16 @@ public class RestClientBuilder {
         return this;
     }
 
+    public final RestClientBuilder file(File file) {
+        this.mFile = file;
+        return this;
+    }
+
+    public final RestClientBuilder file(String file) {
+        this.mFile = new File(file);
+        return this;
+    }
+
 //    private Map<String, Object> checkParams() {
 //        if (mParams == null) {
 //            return new WeakHashMap<>();
@@ -96,7 +106,7 @@ public class RestClientBuilder {
 
 
     public final RestClient build() {
-        return new RestClient(mUrl, PARAMS, mRequest, mSuccess, mError, mFailure, mBody, mContext, mLoaderStyle);
+        return new RestClient(mUrl, PARAMS, mRequest, mSuccess, mError, mFailure, mBody, mFile, mContext, mLoaderStyle);
     }
 
 
