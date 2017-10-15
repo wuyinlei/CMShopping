@@ -33,7 +33,7 @@ public class ExampleDelegate extends CainiaoDelegate {
 
     private void testRestCliect() {
         RestClient.builder()
-                .url("http://news.baidu.com/")
+                .url("http://127.0.0.1/index")
                 .loader(_mActivity)
                 .onRequest(new IRequest() {
                     @Override
@@ -51,7 +51,7 @@ public class ExampleDelegate extends CainiaoDelegate {
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        Log.d("ExampleDelegate", "onSuccess  Thread.currentThread():" + Thread.currentThread());
+                        Log.d("ExampleDelegate", response + "  onSuccess  Thread.currentThread():" + Thread.currentThread());
                         Toast.makeText(_mActivity, response, Toast.LENGTH_SHORT).show();
                     }
                 })
