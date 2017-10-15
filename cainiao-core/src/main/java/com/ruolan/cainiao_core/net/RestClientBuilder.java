@@ -32,6 +32,11 @@ public class RestClientBuilder {
     private LoaderStyle mLoaderStyle = null;
     private File mFile = null;
 
+    //下载参数
+    private  String mDownloadDir;
+    private  String  mExtension;
+    private  String mName;
+
     public RestClientBuilder() {
     }
 
@@ -85,6 +90,24 @@ public class RestClientBuilder {
         return this;
     }
 
+    public final RestClientBuilder extension(String  extension) {
+        this.mExtension = extension;
+        return this;
+    }
+
+    public final RestClientBuilder downloadName(String  downloadName) {
+        this.mName = downloadName;
+        return this;
+    }
+
+
+
+    public final RestClientBuilder downloadDir(String  downloadDir) {
+        this.mDownloadDir = downloadDir;
+        return this;
+    }
+
+
 //    private Map<String, Object> checkParams() {
 //        if (mParams == null) {
 //            return new WeakHashMap<>();
@@ -106,7 +129,19 @@ public class RestClientBuilder {
 
 
     public final RestClient build() {
-        return new RestClient(mUrl, PARAMS, mRequest, mSuccess, mError, mFailure, mBody, mFile, mContext, mLoaderStyle);
+        return new RestClient(mUrl,
+                PARAMS,
+                mRequest,
+                mSuccess,
+                mError,
+                mFailure,
+                mBody,
+                mFile,
+                mContext,
+                mLoaderStyle,
+                mDownloadDir,
+                mExtension,
+                mName);
     }
 
 

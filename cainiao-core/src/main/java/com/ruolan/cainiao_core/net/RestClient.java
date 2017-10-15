@@ -1,12 +1,14 @@
 package com.ruolan.cainiao_core.net;
 
 import android.content.Context;
+import android.content.pm.ProviderInfo;
 
 import com.ruolan.cainiao_core.net.callback.IError;
 import com.ruolan.cainiao_core.net.callback.IFailure;
 import com.ruolan.cainiao_core.net.callback.IRequest;
 import com.ruolan.cainiao_core.net.callback.ISuccess;
 import com.ruolan.cainiao_core.net.callback.RequestCallback;
+import com.ruolan.cainiao_core.net.download.DownloadHandler;
 import com.ruolan.cainiao_core.ui.CainiaoLoader;
 import com.ruolan.cainiao_core.ui.LoaderStyle;
 
@@ -36,6 +38,11 @@ public class RestClient {
     private final Context CONTEXT;
     private final File FILE;
 
+    //下载参数
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
+
     public RestClient(String URL,
                       WeakHashMap<String, Object> params, IRequest REQUEST,
                       ISuccess SUCCESS,
@@ -44,7 +51,10 @@ public class RestClient {
                       RequestBody BODY,
                       File file,
                       Context context,
-                      LoaderStyle loaderStyle) {
+                      LoaderStyle loaderStyle,
+                      String downloadDir,
+                      String extension,
+                      String name) {
         this.URL = URL;
         PARAMS.putAll(params);
         this.REQUEST = REQUEST;
@@ -55,6 +65,9 @@ public class RestClient {
         this.FILE = file;
         this.CONTEXT = context;
         this.LOADER_STYLE = loaderStyle;
+        this.DOWNLOAD_DIR = downloadDir;
+        this.EXTENSION = extension;
+        this.NAME = name;
     }
 
     public static RestClientBuilder builder() {
@@ -153,4 +166,10 @@ public class RestClient {
     public final void delete() {
         request(HttpMethod.DELETE);
     }
+
+
+    public final void download(){
+        new DownloadHandler(URL,REQUEST,SUCCESS,ERROR,FAILURE,DOWNLOAD_DIR,EXTENSION,NAME).handlerDownload();
+    }
+
 }
