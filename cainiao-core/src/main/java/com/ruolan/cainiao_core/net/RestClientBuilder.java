@@ -1,9 +1,13 @@
 package com.ruolan.cainiao_core.net;
 
+import android.content.Context;
+import android.graphics.Rect;
+
 import com.ruolan.cainiao_core.net.callback.IError;
 import com.ruolan.cainiao_core.net.callback.IFailure;
 import com.ruolan.cainiao_core.net.callback.IRequest;
 import com.ruolan.cainiao_core.net.callback.ISuccess;
+import com.ruolan.cainiao_core.ui.LoaderStyle;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -18,13 +22,15 @@ import okhttp3.RequestBody;
 public class RestClientBuilder {
 
 
-    private String mUrl;
-    private static final WeakHashMap<String,Object> PARAMS = RestCreate.getParams();
-    private IRequest mRequest;
-    private ISuccess mSuccess;
-    private IError mError;
-    private IFailure mFailure;
-    private RequestBody mBody;
+    private String mUrl = null;
+    private static final WeakHashMap<String, Object> PARAMS = RestCreate.getParams();
+    private IRequest mRequest = null;
+    private ISuccess mSuccess = null;
+    private IError mError = null;
+    private IFailure mFailure = null;
+    private RequestBody mBody = null;
+    private Context mContext = null;
+    private LoaderStyle mLoaderStyle = null;
 
     public RestClientBuilder() {
     }
@@ -76,8 +82,21 @@ public class RestClientBuilder {
 //        return mParams;
 //    }
 
+    public final RestClientBuilder loader(Context context, LoaderStyle loaderStyle) {
+        this.mContext = context;
+        this.mLoaderStyle = loaderStyle;
+        return this;
+    }
+
+    public final RestClientBuilder loader(Context context) {
+        this.mContext = context;
+        this.mLoaderStyle = LoaderStyle.BallClipRotatePulseIndicator;
+        return this;
+    }
+
+
     public final RestClient build() {
-        return new RestClient(mUrl,PARAMS, mRequest, mSuccess, mError, mFailure, mBody);
+        return new RestClient(mUrl, PARAMS, mRequest, mSuccess, mError, mFailure, mBody, mContext, mLoaderStyle);
     }
 
 
