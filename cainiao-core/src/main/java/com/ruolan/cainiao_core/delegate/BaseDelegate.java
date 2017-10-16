@@ -22,7 +22,8 @@ public abstract class BaseDelegate extends SwipeBackFragment {
 
     public abstract Object setLayout();
 
-    public abstract void onBindView(@Nullable Bundle savedInstanceState, View rootView);
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+    }
 
     @Nullable
     @Override
@@ -42,7 +43,7 @@ public abstract class BaseDelegate extends SwipeBackFragment {
         return rootView;
     }
 
-    public final ProxyActivity getProxyActivity(){
+    public final ProxyActivity getProxyActivity() {
         return (ProxyActivity) _mActivity;
     }
 

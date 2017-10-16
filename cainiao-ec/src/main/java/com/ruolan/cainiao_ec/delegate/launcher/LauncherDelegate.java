@@ -5,7 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
+import com.cainiao.cainiao_uiu.ui.launcher.ScrollIlauncherTag;
 import com.ruolan.cainiao_core.delegate.CainiaoDelegate;
+import com.ruolan.cainiao_core.util.storage.CainiaoPreference;
 import com.ruolan.cainiao_core.util.timer.BaseTimerTask;
 import com.ruolan.cainiao_core.util.timer.ITimerListener;
 import com.ruolan.cainiao_ec.R;
@@ -33,7 +35,11 @@ public class LauncherDelegate extends CainiaoDelegate implements ITimerListener 
 
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView() {
-
+        if (mTimer != null){
+            mTimer.cancel();
+            mTimer = null;
+            checkIsShowScroll();
+        }
     }
 
     private void initTimer() {
@@ -53,6 +59,20 @@ public class LauncherDelegate extends CainiaoDelegate implements ITimerListener 
         initTimer();
     }
 
+    /**
+     * 检查是否展示启动界面轮播图
+     */
+    private void checkIsShowScroll() {
+        if (!CainiaoPreference.getAppFlag(ScrollIlauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
+            getSupportDelegate().start(new LauncherScrollDelegate(), SINGLETASK);
+        } else {
+            //检查用户是否登录  跳转逻辑
+
+
+        }
+
+    }
+
     @Override
     public void onTimer() {
         getProxyActivity().runOnUiThread(new Runnable() {
@@ -61,13 +81,11 @@ public class LauncherDelegate extends CainiaoDelegate implements ITimerListener 
                 if (mTvTimer != null) {
                     mTvTimer.setText(MessageFormat.format("跳过\n{0}s", mCount));
                     mCount--;
-                    if (mCount <=0 ){
-                        if (mTimer != null){
+                    if (mCount <= 0) {
+                        if (mTimer != null) {
                             mTimer.cancel();
                             mTimer = null;
-
-
-
+                            checkIsShowScroll();
                         }
                     }
                 }
