@@ -1,7 +1,6 @@
 package com.ruolan.cainiao_core.net.download;
 
 import android.content.Intent;
-import android.media.tv.TvView;
 import android.net.Uri;
 import android.os.AsyncTask;
 
@@ -12,9 +11,7 @@ import com.ruolan.cainiao_core.util.file.FileUtil;
 
 import java.io.File;
 import java.io.InputStream;
-import java.io.PipedReader;
 
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
 /**
@@ -75,7 +72,7 @@ public class SaveFileTask extends AsyncTask<Object,Void,File>{
             install.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             install.setAction(Intent.ACTION_VIEW);
             install.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-            Cainiao.getApplication().startActivity(install);
+            Cainiao.getApplicationContext().startActivity(install);
         }
     }
 }

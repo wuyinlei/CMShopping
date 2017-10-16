@@ -32,6 +32,9 @@ public class ExampleDelegate extends CainiaoDelegate {
     }
 
     private void testRestCliect() {
+
+
+
         RestClient.builder()
                 .url("http://127.0.0.1/index")
                 .loader(_mActivity)

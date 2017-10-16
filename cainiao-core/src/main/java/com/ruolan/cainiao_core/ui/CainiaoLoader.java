@@ -7,7 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.ruolan.cainiao_core.R;
-import com.ruolan.cainiao_core.util.DimenUtils;
+import com.ruolan.cainiao_core.util.dimen.DimenUtils;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;

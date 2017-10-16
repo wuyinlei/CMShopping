@@ -1,4 +1,4 @@
-package com.ruolan.cainiao_core.util;
+package com.ruolan.cainiao_core.util.dimen;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
@@ -12,13 +12,13 @@ import com.ruolan.cainiao_core.app.Cainiao;
 public class DimenUtils {
 
     public static int getScreenWidth() {
-        final Resources resources = Cainiao.getApplication().getResources();
+        final Resources resources = Cainiao.getApplicationContext().getResources();
         final DisplayMetrics dm = resources.getDisplayMetrics();
         return dm.widthPixels;
     }
 
     public static int getScreenHeight() {
-        final Resources resources = Cainiao.getApplication().getResources();
+        final Resources resources = Cainiao.getApplicationContext().getResources();
         final DisplayMetrics dm = resources.getDisplayMetrics();
         return dm.heightPixels;
     }

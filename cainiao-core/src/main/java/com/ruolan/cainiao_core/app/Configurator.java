@@ -40,6 +40,7 @@ public class Configurator {
         CAINIAO_CONFIGS.put(ConfigType.LOADER_DELAYED.name(), delayed);
         return this;
     }
+
     private static class Holder {
         private static final Configurator INSTANCE = new Configurator();
     }
@@ -57,6 +58,12 @@ public class Configurator {
         return Holder.INSTANCE;
     }
 
+    /**
+     * 添加域名
+     *
+     * @param host 域名访问地址
+     * @return Configurator
+     */
     public final Configurator withApiHost(String host) {
         CAINIAO_CONFIGS.put(ConfigType.API_HOST.name(), host);
         return this;
@@ -64,28 +71,36 @@ public class Configurator {
 
     /**
      * 传入自定义的Icon
-     * @param descriptor
+     *
+     * @param descriptor IconFontDescriptor
      * @return Configurator
      */
-    public final Configurator withIcon(IconFontDescriptor descriptor){
+    public final Configurator withIcon(IconFontDescriptor descriptor) {
         ICON_FONT_DESCRIPTORS.add(descriptor);
         return this;
     }
 
     /**
      * 添加自定义的拦截器
-     * @param interceptor  自定义的拦截器
+     *
+     * @param interceptor 自定义的拦截器
      * @return Configurator
      */
-    public final Configurator withInterceptor(Interceptor interceptor){
+    public final Configurator withInterceptor(Interceptor interceptor) {
         CAINIAO_INTERCEPTORS.add(interceptor);
-        CAINIAO_CONFIGS.put(ConfigType.INTERCEPTOR.name(),CAINIAO_INTERCEPTORS);
+        CAINIAO_CONFIGS.put(ConfigType.INTERCEPTOR.name(), CAINIAO_INTERCEPTORS);
         return this;
     }
 
-    public final Configurator withInterceptor(ArrayList<Interceptor> interceptors){
+    /**
+     * 添加拦截器
+     *
+     * @param interceptors 拦截器集合
+     * @return Configurator
+     */
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
         CAINIAO_INTERCEPTORS.addAll(interceptors);
-        CAINIAO_CONFIGS.put(ConfigType.INTERCEPTOR.name(),CAINIAO_INTERCEPTORS);
+        CAINIAO_CONFIGS.put(ConfigType.INTERCEPTOR.name(), CAINIAO_INTERCEPTORS);
         return this;
     }
 
@@ -98,6 +113,9 @@ public class Configurator {
         }
     }
 
+    /**
+     * 检查配置项是否正确
+     */
     private void checkConfigration() {
         final boolean isReady = (boolean) CAINIAO_CONFIGS.get(ConfigType.CONFIG_READY.name());
         if (!isReady) {

@@ -14,16 +14,15 @@ import java.util.HashMap;
 public final class Cainiao {
 
 
-    public static Configurator init(Context context){
-        getConfitgurations().put(ConfigType.APPLICATION_CONTEXT.name(),context.getApplicationContext());
+    public static Configurator init(Context context) {
+        getConfitgurations().put(ConfigType.APPLICATION_CONTEXT.name(), context.getApplicationContext());
 
         return Configurator.getInstance();
     }
 
-    public static HashMap<String,Object> getConfitgurations(){
+    public static HashMap<String, Object> getConfitgurations() {
         return Configurator.getInstance().getCainiaoConfigs();
     }
-
 
 
     public static <T> T getConfiguration(Object key) {
@@ -34,7 +33,12 @@ public final class Cainiao {
         return Configurator.getInstance();
     }
 
-    public static Context getApplication(){
+    /**
+     * 获取全局的上下文
+     *
+     * @return Context
+     */
+    public static Context getApplicationContext() {
         return (Context) getConfitgurations().get(ConfigType.APPLICATION_CONTEXT.name());
     }
 
