@@ -9,6 +9,7 @@ import com.ruolan.cainiao_core.delegate.CainiaoDelegate;
 import com.ruolan.cainiao_ec.delegate.launcher.LauncherDelegate;
 import com.ruolan.cainiao_ec.delegate.launcher.LauncherScrollDelegate;
 import com.ruolan.cainiao_ec.delegate.main.EcBottomDelegate;
+import com.ruolan.cainiao_ec.delegate.sign.SignInDelegate;
 import com.ruolan.cainiao_ec.delegate.sign.SignUpDelegate;
 
 public class MainActivity extends ProxyActivity {

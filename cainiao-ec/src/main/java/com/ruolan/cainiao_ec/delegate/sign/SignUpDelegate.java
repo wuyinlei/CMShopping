@@ -3,11 +3,15 @@ package com.ruolan.cainiao_ec.delegate.sign;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 
 import com.ruolan.cainiao_core.net.RestClient;
+import com.ruolan.cainiao_core.net.callback.IError;
+import com.ruolan.cainiao_core.net.callback.IFailure;
 import com.ruolan.cainiao_core.net.callback.ISuccess;
+import com.ruolan.cainiao_core.util.log.CainiaoLogger;
 import com.ruolan.cainiao_ec.R2;
 import com.ruolan.cainiao_core.delegate.CainiaoDelegate;
 import com.ruolan.cainiao_ec.R;
@@ -51,14 +55,32 @@ public class SignUpDelegate extends CainiaoDelegate {
     void onClickSignUp() {
         if (checkForm()) {
             RestClient.builder()
-                    .url("sign_up")
-                    .params("","")
+                    .params("phone",mPhone.getText().toString().trim())
+                    .params("password",mPassword.getText().toString().trim())
+                    .params("email",mEmail.getText().toString().trim())
+                    .params("name",mName.getText().toString().trim())
+                    .url("http://easy-mock.com/mock/59e57875f757730a12fd0752/test/user_profile")
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-
+                            CainiaoLogger.d("SignInDelegate",response);
+                            SignHandler.onSignUp(response);
+                            getSupportDelegate().start(new SignInDelegate());
                         }
-                    }).build().post();
+                    })
+                    .error(new IError() {
+                        @Override
+                        public void onError(int code, String msg) {
+                            Log.d("SignInDelegate", "code:" + code);
+                        }
+                    }).failure(new IFailure() {
+                @Override
+                public void onFailure() {
+                    Log.d("SignInDelegate", "失败了");
+                }
+            })
+                    .build()
+                    .post();
         }
     }
 
@@ -86,14 +108,14 @@ public class SignUpDelegate extends CainiaoDelegate {
         }
 
 
-        if (email.isEmpty() || Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             mEmail.setError("错误的邮箱格式");
             isPass = false;
         } else {
             mEmail.setError(null);
         }
 
-        if (phone.isEmpty() || Patterns.PHONE.matcher(phone).matches()) {
+        if (phone.isEmpty() || !Patterns.PHONE.matcher(phone).matches()) {
             mPhone.setError("手机号错误");
             isPass = false;
         } else {
@@ -107,7 +129,7 @@ public class SignUpDelegate extends CainiaoDelegate {
             mPassword.setError(null);
         }
 
-        if (rePassword.isEmpty() || rePassword.length() < 6 || rePassword.equals(password)) {
+        if (rePassword.isEmpty() || rePassword.length() < 6 || !rePassword.equals(password)) {
             mRePassword.setError("两次输入的密码不一致,请检查");
             isPass = false;
         } else {

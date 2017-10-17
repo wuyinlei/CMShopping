@@ -19,9 +19,8 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_index"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@android:color/transparent"
-        app:layout_behavior="com.ruolan.cainiao_ec.delegate.main.index.TranslucentBehavior">
+        android:layout_height="48dp"
+        android:background="@android:color/transparent">
 
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"

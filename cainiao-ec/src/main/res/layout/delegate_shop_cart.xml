@@ -6,15 +6,11 @@
                                               android:background="#1111"
                                               android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/app_main"
-        android:gravity="center">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="50dp"
+            android:background="@color/app_main"
+            android:layout_width="match_parent">
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_top_shop_cart_clear"
@@ -51,7 +47,6 @@
                 android:textSize="18sp"
                 tools:ignore="HardcodedText,RtlHardcoded" />
         </RelativeLayout>
-    </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_shop_cart"

@@ -12,6 +12,8 @@ import com.ruolan.cainiao_ec.R;
  */
 
 public class PersonalDelegate extends BottomItemDelegate {
+
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_personal;
