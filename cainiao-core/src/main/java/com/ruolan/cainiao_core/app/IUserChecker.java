@@ -12,7 +12,7 @@ public interface IUserChecker {
     void onSignIn();
 
     /**
-     * 用户退出
+     * 用户退出  未登录
      */
     void onNotSignIn();
 

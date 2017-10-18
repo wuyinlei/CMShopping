@@ -18,8 +18,9 @@ public class SignHandler {
      * 数据持久化
      *
      * @param response 用户数据
+     * @param ISignListener
      */
-    public static void onSignIn(String response) {
+    public static void onSignIn(String response, ISignListener ISignListener) {
         final JSONObject profileJson = JSON.parseObject(response).getJSONObject("data");
         final long userId = profileJson.getLong("userId");
         final String name = profileJson.getString("name");
@@ -30,6 +31,8 @@ public class SignHandler {
         final UserProfile profile = new UserProfile(userId, name, avatar, gender, address);
 
         DatabaseManager.getInstance().getDao().update(profile);
+
+        ISignListener.onSignInSuccess();
     }
 
     /**
@@ -37,7 +40,7 @@ public class SignHandler {
      *
      * @param response 用户数据
      */
-    public static void onSignUp(String response) {
+    public static void onSignUp(String response,ISignListener listener) {
         final JSONObject profileJson = JSON.parseObject(response).getJSONObject("data");
         final long userId = profileJson.getLong("userId");
         final String name = profileJson.getString("name");
@@ -54,6 +57,8 @@ public class SignHandler {
         if (userProfile == null) {
 
             DatabaseManager.getInstance().getDao().insert(profile);
+
+            listener.onSignUpSuccess();
 
         }
     }

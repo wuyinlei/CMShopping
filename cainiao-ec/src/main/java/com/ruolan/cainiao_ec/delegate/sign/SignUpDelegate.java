@@ -1,5 +1,6 @@
 package com.ruolan.cainiao_ec.delegate.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -7,14 +8,14 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 
+import com.ruolan.cainiao_core.delegate.CainiaoDelegate;
 import com.ruolan.cainiao_core.net.RestClient;
 import com.ruolan.cainiao_core.net.callback.IError;
 import com.ruolan.cainiao_core.net.callback.IFailure;
 import com.ruolan.cainiao_core.net.callback.ISuccess;
 import com.ruolan.cainiao_core.util.log.CainiaoLogger;
-import com.ruolan.cainiao_ec.R2;
-import com.ruolan.cainiao_core.delegate.CainiaoDelegate;
 import com.ruolan.cainiao_ec.R;
+import com.ruolan.cainiao_ec.R2;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -39,6 +40,15 @@ public class SignUpDelegate extends CainiaoDelegate {
     @BindView(R2.id.edit_sign_up_re_password)
     TextInputEditText mRePassword = null;
 
+    private ISignListener mISignListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener){
+            mISignListener = (ISignListener) activity;
+        }
+    }
 
     @Override
     public Object setLayout() {
@@ -64,8 +74,7 @@ public class SignUpDelegate extends CainiaoDelegate {
                         @Override
                         public void onSuccess(String response) {
                             CainiaoLogger.d("SignInDelegate",response);
-                            SignHandler.onSignUp(response);
-                            getSupportDelegate().start(new SignInDelegate());
+                            SignHandler.onSignUp(response,mISignListener);
                         }
                     })
                     .error(new IError() {
