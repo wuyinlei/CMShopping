@@ -2,6 +2,7 @@ package com.ruolan.cainiao_ec.delegate.sign;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.ruolan.cainiao_core.app.AccountManager;
 import com.ruolan.cainiao_ec.database.DatabaseManager;
 import com.ruolan.cainiao_ec.database.UserProfile;
 import com.ruolan.cainiao_ec.database.UserProfileDao;
@@ -32,6 +33,9 @@ public class SignHandler {
 
         DatabaseManager.getInstance().getDao().update(profile);
 
+        //已经注册并登录成功了
+        AccountManager.saveSignState(true);
+
         ISignListener.onSignInSuccess();
     }
 
@@ -57,6 +61,9 @@ public class SignHandler {
         if (userProfile == null) {
 
             DatabaseManager.getInstance().getDao().insert(profile);
+
+            //已经注册并登录成功了
+            AccountManager.saveSignState(true);
 
             listener.onSignUpSuccess();
 
