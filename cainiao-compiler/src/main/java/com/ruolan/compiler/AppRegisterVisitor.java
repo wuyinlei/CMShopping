@@ -15,10 +15,9 @@ import javax.lang.model.util.SimpleAnnotationValueVisitor7;
  * Created by wuyinlei on 2017/10/18.
  */
 
-public final class AppRegisterVisitor extends SimpleAnnotationValueVisitor7<Void,Void>{
+public final class AppRegisterVisitor extends SimpleAnnotationValueVisitor7<Void, Void> {
 
     private Filer mFiler = null;
-    private TypeMirror mTypeMirror = null;
     private String mPackageName = null;
 
     public void setFiler(Filer filer) {
@@ -34,18 +33,18 @@ public final class AppRegisterVisitor extends SimpleAnnotationValueVisitor7<Void
     @Override
     public Void visitType(TypeMirror typeMirror, Void aVoid) {
 
-        mTypeMirror = typeMirror;
+        generateJavaCode(typeMirror);
         return aVoid;
     }
 
-    private void generateJavaCode(){
+    private void generateJavaCode(TypeMirror typeMirror) {
         final TypeSpec targetActivity = TypeSpec.classBuilder("AppRegister")
                 .addModifiers(Modifier.PUBLIC)
                 .addModifiers(Modifier.FINAL)
-                .superclass(TypeName.get(mTypeMirror))
+                .superclass(TypeName.get(typeMirror))
                 .build();
 
-        final JavaFile javaFile = JavaFile.builder(mPackageName+".wxapi",targetActivity)
+        final JavaFile javaFile = JavaFile.builder(mPackageName + ".wxapi", targetActivity)
                 .addFileComment("微信广播接收器")
                 .build();
 

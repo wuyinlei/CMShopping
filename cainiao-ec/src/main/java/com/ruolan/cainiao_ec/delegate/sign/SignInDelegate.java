@@ -11,6 +11,8 @@ import com.ruolan.cainiao_core.net.callback.IError;
 import com.ruolan.cainiao_core.net.callback.IFailure;
 import com.ruolan.cainiao_core.net.callback.ISuccess;
 import com.ruolan.cainiao_core.util.log.CainiaoLogger;
+import com.ruolan.cainiao_core.wechat.CainiaoWeChat;
+import com.ruolan.cainiao_core.wechat.callback.IWeChatSignInCallback;
 import com.ruolan.cainiao_ec.R;
 import com.ruolan.cainiao_ec.R2;
 import com.ruolan.cainiao_ec.delegate.main.EcBottomDelegate;
@@ -80,7 +82,12 @@ public class SignInDelegate extends CainiaoDelegate {
 
     @OnClick(R2.id.icon_sign_in_wechat)
     void onClickWeChat() {
+        CainiaoWeChat.geiInstance().onSignSuccess(new IWeChatSignInCallback() {
+            @Override
+            public void onSignInSuccess(String userInfo) {
 
+            }
+        }).signIn();
     }
 
     @OnClick(R2.id.tv_link_sign_up)

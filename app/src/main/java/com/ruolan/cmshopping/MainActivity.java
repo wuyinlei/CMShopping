@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
 import com.ruolan.cainiao_core.activities.ProxyActivity;
+import com.ruolan.cainiao_core.app.Cainiao;
 import com.ruolan.cainiao_core.delegate.CainiaoDelegate;
 import com.ruolan.cainiao_core.ui.ILauncherListener;
 import com.ruolan.cainiao_core.ui.OnLauncherFinishTag;
@@ -26,6 +27,8 @@ public class MainActivity extends ProxyActivity implements ISignListener, ILaunc
         if (actionBar != null) {
             actionBar.hide();
         }
+
+        Cainiao.getConfigurator().withActivity(this);
     }
 
     @Override

@@ -18,7 +18,6 @@ import javax.lang.model.util.SimpleAnnotationValueVisitor7;
 public final class PayEntryVisitor extends SimpleAnnotationValueVisitor7<Void,Void>{
 
     private Filer mFiler = null;
-    private TypeMirror mTypeMirror = null;
     private String mPackageName = null;
 
     public void setFiler(Filer filer) {
@@ -34,15 +33,16 @@ public final class PayEntryVisitor extends SimpleAnnotationValueVisitor7<Void,Vo
     @Override
     public Void visitType(TypeMirror typeMirror, Void aVoid) {
 
-        mTypeMirror = typeMirror;
+       generateJavaCode(typeMirror);
+
         return aVoid;
     }
 
-    private void generateJavaCode(){
+    private void generateJavaCode(TypeMirror typeMirror){
         final TypeSpec targetActivity = TypeSpec.classBuilder("WXPayEntryActivity")
                 .addModifiers(Modifier.PUBLIC)
                 .addModifiers(Modifier.FINAL)
-                .superclass(TypeName.get(mTypeMirror))
+                .superclass(TypeName.get(typeMirror))
                 .build();
 
         final JavaFile javaFile = JavaFile.builder(mPackageName+".wxapi",targetActivity)

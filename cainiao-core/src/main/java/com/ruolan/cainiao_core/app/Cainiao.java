@@ -29,7 +29,7 @@ public final class Cainiao {
         return getConfigurator().getConfiguration(key);
     }
 
-    private static Configurator getConfigurator() {
+    public static Configurator getConfigurator() {
         return Configurator.getInstance();
     }
 

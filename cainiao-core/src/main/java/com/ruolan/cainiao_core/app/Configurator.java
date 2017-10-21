@@ -1,7 +1,9 @@
 package com.ruolan.cainiao_core.app;
 
 
+import android.app.Activity;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
@@ -103,6 +105,37 @@ public class Configurator {
         CAINIAO_CONFIGS.put(ConfigType.INTERCEPTOR.name(), CAINIAO_INTERCEPTORS);
         return this;
     }
+
+    /**
+     * 添加WeChat  AppId
+     *
+     * @param appId 微信AppId
+     */
+    public final Configurator withWeChatAppId(String appId) {
+        CAINIAO_CONFIGS.put(ConfigType.WE_CHAT_APP_ID.name(), appId);
+        return this;
+    }
+
+    /**
+     * 添加WeChat  AppId
+     *
+     * @param appSceret 微信AppSceret
+     */
+    public final Configurator withWeChatAppSceret(String appSceret) {
+        CAINIAO_CONFIGS.put(ConfigType.WE_CHAT_APP_SECRET.name(), appSceret);
+        return this;
+    }
+
+    public final Configurator withActivity(Activity activity) {
+        CAINIAO_CONFIGS.put(ConfigType.ACTIVITY.name(), activity);
+        return this;
+    }
+
+    public Configurator withJavascriptInterface(@NonNull String name) {
+        CAINIAO_CONFIGS.put(ConfigType.JAVASCRIPT_INTERFACE.name(), name);
+        return this;
+    }
+
 
     private void initIcons() {
         if (ICON_FONT_DESCRIPTORS.size() > 0) {

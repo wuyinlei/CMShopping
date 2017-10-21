@@ -1,16 +1,24 @@
 package com.ruolan.cainiao_core.wechat.templete;
 
-import com.ruolan.cainiao_core.activities.ProxyActivity;
-import com.ruolan.cainiao_core.delegate.CainiaoDelegate;
+import com.ruolan.cainiao_core.wechat.BaseWXEntryActivity;
+import com.ruolan.cainiao_core.wechat.CainiaoWeChat;
 
 /**
  * Created by wuyinlei on 2017/10/18.
  */
 
-public class WXEntryTemplete extends ProxyActivity {
+public class WXEntryTemplete extends BaseWXEntryActivity {
+
 
     @Override
-    public CainiaoDelegate setRootDelegate() {
-        return null;
+    protected void onResume() {
+        super.onResume();
+        finish();
+        overridePendingTransition(0, 0);
+    }
+
+    @Override
+    protected void onSignInSuccess(String userInfo) {
+        CainiaoWeChat.geiInstance().getSignInCallback().onSignInSuccess(userInfo);
     }
 }
