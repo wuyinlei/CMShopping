@@ -8,8 +8,8 @@ import android.widget.TableRow;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
-import com.cainiao.cainiao_uiu.ui.launcher.LauncherHolderCreator;
-import com.cainiao.cainiao_uiu.ui.launcher.ScrollIlauncherTag;
+import com.cainiao.cainiao_ui.ui.launcher.LauncherHolderCreator;
+import com.cainiao.cainiao_ui.ui.launcher.ScrollIlauncherTag;
 import com.ruolan.cainiao_core.app.AccountManager;
 import com.ruolan.cainiao_core.app.IUserChecker;
 import com.ruolan.cainiao_core.delegate.CainiaoDelegate;

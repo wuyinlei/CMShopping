@@ -1,11 +1,13 @@
 package com.ruolan.cainiao_ec.delegate.main.index;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.cainiao.cainiao_ui.ui.recycler.RgbValue;
 import com.ruolan.cainiao_ec.R;
 
 
@@ -20,8 +22,8 @@ public class TranslucentBehavior extends CoordinatorLayout.Behavior<Toolbar> {
     private int mDistanceY = 0;
     //颜色变化速度
     private static final int SHOW_SPEED = 3;
-    //定义变化的颜色
-//    private final RgbValue RGB_VALUE = RgbValue.create(255, 124, 2);
+//    定义变化的颜色
+    private final RgbValue RGB_VALUE = RgbValue.create(255, 124, 2);
 
     public TranslucentBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -49,9 +51,9 @@ public class TranslucentBehavior extends CoordinatorLayout.Behavior<Toolbar> {
         if (mDistanceY > 0 && mDistanceY <= targetHeight) {
             final float scale = (float) mDistanceY / targetHeight;
             final float alpha = scale * 255;
-//            child.setBackgroundColor(Color.argb((int) alpha, RGB_VALUE.red(), RGB_VALUE.green(), RGB_VALUE.blue()));
+            child.setBackgroundColor(Color.argb((int) alpha, RGB_VALUE.red(), RGB_VALUE.green(), RGB_VALUE.blue()));
         } else if (mDistanceY > targetHeight) {
-//            child.setBackgroundColor(Color.rgb(RGB_VALUE.red(), RGB_VALUE.green(), RGB_VALUE.blue()));
+            child.setBackgroundColor(Color.rgb(RGB_VALUE.red(), RGB_VALUE.green(), RGB_VALUE.blue()));
         }
     }
 }

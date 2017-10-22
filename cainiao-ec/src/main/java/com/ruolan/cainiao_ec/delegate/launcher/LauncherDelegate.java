@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
-import com.cainiao.cainiao_uiu.ui.launcher.ScrollIlauncherTag;
+import com.cainiao.cainiao_ui.ui.launcher.ScrollIlauncherTag;
 import com.ruolan.cainiao_core.app.AccountManager;
 import com.ruolan.cainiao_core.app.IUserChecker;
 import com.ruolan.cainiao_core.delegate.CainiaoDelegate;

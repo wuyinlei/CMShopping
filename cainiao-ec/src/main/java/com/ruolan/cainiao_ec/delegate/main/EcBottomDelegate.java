@@ -16,6 +16,8 @@ import java.util.LinkedHashMap;
 
 /**
  * Created by wuyinlei on 2017/10/16.
+ *
+ * @function 基类主界面
  */
 
 public class EcBottomDelegate extends BaseBottomDelegate {

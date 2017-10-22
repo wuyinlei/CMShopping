@@ -15,7 +15,6 @@ import com.ruolan.cainiao_core.wechat.CainiaoWeChat;
 import com.ruolan.cainiao_core.wechat.callback.IWeChatSignInCallback;
 import com.ruolan.cainiao_ec.R;
 import com.ruolan.cainiao_ec.R2;
-import com.ruolan.cainiao_ec.delegate.main.EcBottomDelegate;
 
 import butterknife.BindView;
 import butterknife.OnClick;
