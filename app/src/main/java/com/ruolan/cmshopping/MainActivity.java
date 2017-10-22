@@ -33,7 +33,7 @@ public class MainActivity extends ProxyActivity implements ISignListener, ILaunc
 
     @Override
     public CainiaoDelegate setRootDelegate() {
-        return new SignUpDelegate();
+        return new EcBottomDelegate();
     }
 
 

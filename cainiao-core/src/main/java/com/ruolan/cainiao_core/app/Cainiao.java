@@ -2,6 +2,7 @@ package com.ruolan.cainiao_core.app;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Handler;
 
 import java.util.HashMap;
 
@@ -22,6 +23,15 @@ public final class Cainiao {
 
     public static HashMap<String, Object> getConfitgurations() {
         return Configurator.getInstance().getCainiaoConfigs();
+    }
+
+    /**
+     * 获取全局的Handler
+     *
+     * @return Handler
+     */
+    public static Handler getHandler() {
+        return getConfiguration(ConfigType.HANDLER.name());
     }
 
 

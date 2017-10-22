@@ -53,6 +53,8 @@ public class DebugInterceptor extends BaseInterceptor {
     public Response intercept(Chain chain) throws IOException {
 
         final String url = chain.request().url().toString();
+        Log.d("DebugInterceptor", url);
+        Log.d("DebugInterceptor", DEBUG_URL);
         if (url.contains(DEBUG_URL)){
             Log.d("DebugInterceptor", "到这了");
             return debugResponse(chain,DEBUG_RAW_ID);

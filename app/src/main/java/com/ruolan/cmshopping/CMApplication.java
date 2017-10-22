@@ -24,9 +24,9 @@ public class CMApplication extends Application {
         super.onCreate();
 
         Cainiao.init(this)
-                .withApiHost("http://127.0.0.1/")
+                .withApiHost("http://easy-mock.com/mock/")
                 .withLoaderDelayed(1000)
-                .withInterceptor(new DebugInterceptor("index",R.raw.test))
+                .withInterceptor(new DebugInterceptor("dddddd",R.raw.test))
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
                 .configure();
