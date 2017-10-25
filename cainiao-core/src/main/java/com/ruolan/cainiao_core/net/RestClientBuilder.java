@@ -16,6 +16,8 @@ import okhttp3.RequestBody;
 
 /**
  * Created by wuyinlei on 2017/10/15.
+ *
+ * @function RestClientBuilder
  */
 
 public class RestClientBuilder {
@@ -33,9 +35,9 @@ public class RestClientBuilder {
     private File mFile = null;
 
     //下载参数
-    private  String mDownloadDir;
-    private  String  mExtension;
-    private  String mName;
+    private String mDownloadDir;
+    private String mExtension;
+    private String mName;
 
     public RestClientBuilder() {
     }
@@ -90,19 +92,18 @@ public class RestClientBuilder {
         return this;
     }
 
-    public final RestClientBuilder extension(String  extension) {
+    public final RestClientBuilder extension(String extension) {
         this.mExtension = extension;
         return this;
     }
 
-    public final RestClientBuilder downloadName(String  downloadName) {
+    public final RestClientBuilder downloadName(String downloadName) {
         this.mName = downloadName;
         return this;
     }
 
 
-
-    public final RestClientBuilder downloadDir(String  downloadDir) {
+    public final RestClientBuilder downloadDir(String downloadDir) {
         this.mDownloadDir = downloadDir;
         return this;
     }

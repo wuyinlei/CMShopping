@@ -2,13 +2,9 @@ package com.cainiao.cainiao_ui.ui.recycler;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
-import java.io.FileReader;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.util.LinkedHashMap;
-import java.util.WeakHashMap;
-
-import retrofit2.http.PUT;
 
 /**
  * Created by wuyinlei on 2017/10/22.
@@ -35,7 +31,7 @@ public class MultipleItemEntity implements MultiItemEntity {
     }
 
     @SuppressWarnings("unchecked")
-    public final <T> T getFields(String key){
+    public final <T> T getField(Object key){
         return (T) FILEDS_REFERENCE.get().get(key);
     }
 
