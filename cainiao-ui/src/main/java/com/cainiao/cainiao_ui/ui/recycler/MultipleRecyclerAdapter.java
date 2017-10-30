@@ -8,6 +8,7 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.cainiao.cainiao_ui.ui.banner.BannerCreator;
 import com.cainiao.cainiao_uiu.R;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
@@ -26,6 +27,14 @@ public class MultipleRecyclerAdapter extends
         BaseMultiItemQuickAdapter<MultipleItemEntity, MultipleViewHolder>
         implements BaseQuickAdapter.SpanSizeLookup, OnItemClickListener {
 
+    //设置图片加载策略
+    private static final RequestOptions RECYCLER_OPTIONS =
+            new RequestOptions()
+                    .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .dontAnimate();
+
+    //确保初始化一次Banner 防止重复Item加载
     private boolean mIsInitBanner = false;
 
     /**
@@ -34,7 +43,7 @@ public class MultipleRecyclerAdapter extends
      *
      * @param data A new list is created out of this one to avoid mutable list
      */
-    private MultipleRecyclerAdapter(List<MultipleItemEntity> data) {
+    protected MultipleRecyclerAdapter(List<MultipleItemEntity> data) {
         super(data);
         init();
     }
@@ -54,6 +63,7 @@ public class MultipleRecyclerAdapter extends
                 imageUrl = entity.getField(MultipleFields.IMAGE_URL);
                 Glide.with(mContext)
                         .load(imageUrl)
+                        .apply(RECYCLER_OPTIONS)
 //                        .diskCacheStrategy(DiskCacheStrategy.ALL)
 //                        .dontAnimate()
 //                        .centerCrop()
@@ -65,7 +75,7 @@ public class MultipleRecyclerAdapter extends
                 if (!mIsInitBanner) {
                     bannerImages = entity.getField(MultipleFields.BANNERS);
                     final ConvenientBanner<String> banner = holder.getView(R.id.banner_recycler_item);
-                    BannerCreator.setDefault(banner,bannerImages,this);
+                    BannerCreator.setDefault(banner, bannerImages, this);
                     mIsInitBanner = true;
                 }
 
@@ -77,6 +87,7 @@ public class MultipleRecyclerAdapter extends
                 imageUrl = entity.getField(MultipleFields.IMAGE_URL);
                 Glide.with(mContext)
                         .load(imageUrl)
+                        .apply(RECYCLER_OPTIONS)
 //                        .diskCacheStrategy(DiskCacheStrategy.ALL)
 //                        .dontAnimate()
 //                        .centerCrop()

@@ -17,6 +17,8 @@ import com.ruolan.cainiao_ec.delegate.sign.ISignListener;
 import com.ruolan.cainiao_ec.delegate.sign.SignInDelegate;
 import com.ruolan.cainiao_ec.delegate.sign.SignUpDelegate;
 
+import qiu.niorgai.StatusBarCompat;
+
 public class MainActivity extends ProxyActivity implements ISignListener, ILauncherListener {
 
     @Override
@@ -29,6 +31,8 @@ public class MainActivity extends ProxyActivity implements ISignListener, ILaunc
         }
 
         Cainiao.getConfigurator().withActivity(this);
+
+        StatusBarCompat.translucentStatusBar(this,true);
     }
 
     @Override

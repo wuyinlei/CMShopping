@@ -6,4 +6,8 @@ package com.ruolan.cainiao_core.delegate;
 
 public abstract class CainiaoDelegate extends PermissionCheckerDelegate {
 
+    public <T extends CainiaoDelegate> T getParentDelegate(){
+        return (T) getParentFragment();
+    }
+
 }
