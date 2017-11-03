@@ -10,8 +10,10 @@ import com.cainiao.cainiao_ui.ui.recycler.MultipleFields;
 import com.cainiao.cainiao_ui.ui.recycler.MultipleItemEntity;
 import com.cainiao.cainiao_ui.ui.recycler.MultipleRecyclerAdapter;
 import com.cainiao.cainiao_ui.ui.recycler.MultipleViewHolder;
+import com.ruolan.cainiao_core.delegate.CainiaoDelegate;
 import com.ruolan.cainiao_ec.R;
 import com.ruolan.cainiao_ec.delegate.main.sort.SortDelegate;
+import com.ruolan.cainiao_ec.delegate.main.sort.content.ContentDelegate;
 
 import java.util.List;
 
@@ -64,6 +66,9 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
                             mPrePosition = currentPosition;
 
                             final int contentId = getData().get(currentPosition).getField(MultipleFields.ID);
+
+                            showContent(contentId);
+//                            switchContent(contentId);
                         }
 
                     }
@@ -89,4 +94,20 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
                 break;
         }
     }
+
+    /**
+     * 显示右侧的内容
+     */
+    private void showContent(int contentId){
+        final ContentDelegate delegate = ContentDelegate.newInstance(contentId);
+
+    }
+
+    private void switchContent(ContentDelegate delegate){
+        final CainiaoDelegate contentDelegate = DELEGATE.findChildFragment(ContentDelegate.class);
+        if (contentDelegate != null){
+            contentDelegate.replaceFragment(delegate,false);
+        }
+    }
+
 }

@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
-import com.cainiao.cainiao_ui.ui.launcher.ScrollIlauncherTag;
+import com.cainiao.cainiao_ui.ui.launcher.ScrollLauncherTag;
 import com.ruolan.cainiao_core.app.AccountManager;
 import com.ruolan.cainiao_core.app.IUserChecker;
 import com.ruolan.cainiao_core.delegate.CainiaoDelegate;
@@ -17,8 +17,6 @@ import com.ruolan.cainiao_core.util.timer.BaseTimerTask;
 import com.ruolan.cainiao_core.util.timer.ITimerListener;
 import com.ruolan.cainiao_ec.R;
 import com.ruolan.cainiao_ec.R2;
-import com.ruolan.cainiao_ec.delegate.main.EcBottomDelegate;
-import com.ruolan.cainiao_ec.delegate.sign.SignInDelegate;
 
 import java.text.MessageFormat;
 import java.util.Timer;
@@ -80,7 +78,7 @@ public class LauncherDelegate extends CainiaoDelegate implements ITimerListener 
      * 检查是否展示启动界面轮播图
      */
     private void checkIsShowScroll() {
-        if (!CainiaoPreference.getAppFlag(ScrollIlauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
+        if (!CainiaoPreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
             getSupportDelegate().start(new LauncherScrollDelegate(), SINGLETASK);
         } else {
             //检查用户是否登录  跳转逻辑

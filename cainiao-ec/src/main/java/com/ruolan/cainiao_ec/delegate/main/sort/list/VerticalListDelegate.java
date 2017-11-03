@@ -3,13 +3,11 @@ package com.ruolan.cainiao_ec.delegate.main.sort.list;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
 import com.cainiao.cainiao_ui.ui.recycler.MultipleItemEntity;
-import com.daimajia.androidanimations.library.fading_entrances.FadeInAnimator;
 import com.ruolan.cainiao_core.delegate.CainiaoDelegate;
 import com.ruolan.cainiao_core.net.RestClient;
 import com.ruolan.cainiao_core.net.callback.ISuccess;

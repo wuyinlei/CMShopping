@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 /**
  * Created by wuyinlei on 2017/10/30.
+ *
+ * @function 分类左侧的数据转换
  */
 
 public final class VerticalListDataConverter extends DataConverter {
@@ -25,18 +27,18 @@ public final class VerticalListDataConverter extends DataConverter {
         final int size = dataArray.size();
         for (int i = 0; i < size; i++) {
             final JSONObject data = dataArray.getJSONObject(i);
-            final  int id = data.getInteger("id");
+            final int id = data.getInteger("id");
             final String name = data.getString("name");
             final MultipleItemEntity entity = MultipleItemEntity.builder()
                     .setField(MultipleFields.ITEM_TYPE, ItemType.VERTICAL_MUNE_LIST)
                     .setField(MultipleFields.ID, id)
-                    .setField(MultipleFields.TEXT,name)
-                    .setField(MultipleFields.TAG,false)
+                    .setField(MultipleFields.TEXT, name)
+                    .setField(MultipleFields.TAG, false)
                     .build();
 
             dataList.add(entity);
             //设置第一个被选中
-            dataList.get(0).setField(MultipleFields.TAG,true);
+            dataList.get(0).setField(MultipleFields.TAG, true);
 
         }
         return dataList;

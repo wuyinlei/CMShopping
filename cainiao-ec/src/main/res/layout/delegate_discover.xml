@@ -8,7 +8,8 @@
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:gravity="center"
-            android:layout_height="50dp"
+            android:paddingTop="24dp"
+            android:layout_height="72dp"
             android:background="@android:color/holo_orange_dark"
             android:text="发现"
             android:textColor="@android:color/white"
