@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.webkit.WebView;
 
+import com.ruolan.cainiao_core.app.Cainiao;
+import com.ruolan.cainiao_core.app.ConfigType;
 import com.ruolan.cainiao_core.delegate.CainiaoDelegate;
 import com.ruolan.cainiao_core.delegate.web.route.RouteKeys;
 
@@ -66,7 +68,8 @@ public abstract class WebDelegate extends CainiaoDelegate implements IWebViewIni
                 mWebView = initializer.initWebView(mWebView);
                 mWebView.setWebViewClient(initializer.initWebViewClient());
                 mWebView.setWebChromeClient(initializer.initWebChormeClient());
-                mWebView.addJavascriptInterface(CainiaoWebInterface.create(this), "cainiao");
+                final String name = Cainiao.getConfiguration(ConfigType.JAVASCRIPT_INTERFACE.name());
+                mWebView.addJavascriptInterface(CainiaoWebInterface.create(this), name);
                 mIsWebViewAbailable = true;
             } else {
                 throw new NullPointerException("Initializer is NULL!");

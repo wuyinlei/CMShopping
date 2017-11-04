@@ -19,6 +19,8 @@ import com.ruolan.cainiao_core.delegate.web.route.Router;
 
 public class WebDelegateImpl extends WebDelegate {
 
+    private IPageLoadListener mIPageLoadListener = null;
+
 
     public static WebDelegateImpl create(String url){
         final Bundle args = new Bundle();
@@ -26,6 +28,10 @@ public class WebDelegateImpl extends WebDelegate {
         final WebDelegateImpl delegate = new WebDelegateImpl();
         delegate.setArguments(args);
         return delegate;
+    }
+
+    public void setIPageLoadListener(IPageLoadListener IPageLoadListener) {
+        mIPageLoadListener = IPageLoadListener;
     }
 
     @Override
@@ -58,6 +64,7 @@ public class WebDelegateImpl extends WebDelegate {
     @Override
     public WebViewClient initWebViewClient() {
         WebViewClientImpl viewClient = new WebViewClientImpl(this);
+        viewClient.setIPageLoadListener(mIPageLoadListener);
         return viewClient;
     }
 

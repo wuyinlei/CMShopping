@@ -4,9 +4,12 @@ package com.ruolan.cainiao_core.app;
 import android.app.Activity;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
+import com.ruolan.cainiao_core.delegate.web.event.Event;
+import com.ruolan.cainiao_core.delegate.web.event.EventManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,6 +96,30 @@ public class Configurator {
         CAINIAO_CONFIGS.put(ConfigType.INTERCEPTOR.name(), CAINIAO_INTERCEPTORS);
         return this;
     }
+
+    public final Configurator withWebHost(String webHost) {
+        CAINIAO_CONFIGS.put(ConfigType.WEB_HOST.name(), webHost);
+        return this;
+    }
+
+    /**
+     * 添加和js交互定义好的名称
+     *
+     * @param name 名称
+     * @return Configurator
+     */
+    public Configurator withJavaScriptInterface(String name) {
+        CAINIAO_CONFIGS.put(ConfigType.JAVASCRIPT_INTERFACE.name(), name);
+        return this;
+    }
+
+    public Configurator withWebEvent(@Nullable String name, @Nullable Event event) {
+        final EventManager manager = EventManager.getInstance();
+        manager.addEvent(name, event);
+//        CAINIAO_CONFIGS.put(ConfigType.JAVASCRIPT_INTERFACE.name(), name);
+        return this;
+    }
+
 
     /**
      * 添加拦截器
