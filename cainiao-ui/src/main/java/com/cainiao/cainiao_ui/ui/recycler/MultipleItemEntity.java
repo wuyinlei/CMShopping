@@ -8,6 +8,8 @@ import java.util.LinkedHashMap;
 
 /**
  * Created by wuyinlei on 2017/10/22.
+ *
+ * @function
  */
 
 public class MultipleItemEntity implements MultiItemEntity {
