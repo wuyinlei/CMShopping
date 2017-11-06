@@ -4,13 +4,13 @@ import com.choices.divider.Divider;
 import com.choices.divider.DividerItemDecoration;
 
 /**
- * Created by 傅令杰
+ * Created by wuyinlei on 2017/10/25.
  */
 
 public class DividerLookUpImpl implements DividerItemDecoration.DividerLookup {
 
     private final int COLOR;
-    private final int SIZE;
+    private final  int SIZE;
 
     public DividerLookUpImpl(int color, int size) {
         this.COLOR = color;

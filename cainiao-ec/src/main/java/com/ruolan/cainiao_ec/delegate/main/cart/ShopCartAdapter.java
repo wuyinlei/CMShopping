@@ -125,7 +125,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                 }
 
                 //添加左侧的勾勾的点击事件
-                iconIsSelected.setOnClickListener(new View.OnClickListener() {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
@@ -147,7 +147,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
 
                 //添加加减事件
-                iconMinus.setOnClickListener(new View.OnClickListener() {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         final int currentCount = entity.getField(ShopItemType.SHOP_CART_COUNT);
@@ -175,7 +175,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                     }
                 });
 
-                iconPlus.setOnClickListener(new View.OnClickListener() {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         final int currentCount = entity.getField(ShopItemType.SHOP_CART_COUNT);
