@@ -17,6 +17,8 @@ public class ShopItemType {
     public static final int SHOP_CART_ITEM = 6;
 
     public static final int SHOP_CART_POSITION = 7;
+    public static final int IS_SELECTED = 8;
+
 
 
 }

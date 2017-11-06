@@ -9,6 +9,8 @@ import com.cainiao.cainiao_ui.ui.recycler.MultipleItemEntity;
 
 import java.util.ArrayList;
 
+import javax.net.ssl.SNIHostName;
+
 /**
  * Created by wuyinlei on 2017/11/5.
  *
@@ -41,6 +43,8 @@ public class ShopCartDataConverter extends DataConverter {
                     .setField(ShopItemType.SHOP_CART_PRICE,price)
                     .setField(ShopItemType.SHOP_CART_THUMB,thumb)
                     .setField(ShopItemType.SHOP_CART_TITLE,title)
+                    .setField(ShopItemType.IS_SELECTED,false)
+                    .setField(ShopItemType.SHOP_CART_POSITION,i)
                     .build();
 
             dataList.add(entity);
