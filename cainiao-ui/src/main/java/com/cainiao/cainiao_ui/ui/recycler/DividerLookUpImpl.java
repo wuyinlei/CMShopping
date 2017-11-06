@@ -7,12 +7,12 @@ import com.choices.divider.DividerItemDecoration;
  * Created by 傅令杰
  */
 
-public class DividerLookupImpl implements DividerItemDecoration.DividerLookup {
+public class DividerLookUpImpl implements DividerItemDecoration.DividerLookup {
 
     private final int COLOR;
     private final int SIZE;
 
-    public DividerLookupImpl(int color, int size) {
+    public DividerLookUpImpl(int color, int size) {
         this.COLOR = color;
         this.SIZE = size;
     }

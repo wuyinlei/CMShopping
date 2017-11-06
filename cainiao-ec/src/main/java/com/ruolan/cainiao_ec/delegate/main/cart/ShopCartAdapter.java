@@ -14,6 +14,8 @@ import com.cainiao.cainiao_ui.ui.recycler.MultipleRecyclerAdapter;
 import com.cainiao.cainiao_ui.ui.recycler.MultipleViewHolder;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.ruolan.cainiao_core.app.Cainiao;
+import com.ruolan.cainiao_core.net.RestClient;
+import com.ruolan.cainiao_core.net.callback.ISuccess;
 import com.ruolan.cainiao_ec.R;
 
 import java.util.List;
@@ -28,6 +30,8 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
 
     private boolean mIsSelectedAll = false;
+    private double mTotalPrice = 0.00;
+    private ICartItemListener mCartItemListener = null;
 
     private static final RequestOptions OPTIONS = new RequestOptions()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -44,9 +48,26 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
     protected ShopCartAdapter(List<MultipleItemEntity> data) {
         super(data);
 
+        //初始化总价
+        for (MultipleItemEntity entity : data) {
+            final double price = entity.getField(ShopItemType.SHOP_CART_PRICE);
+            final int count = entity.getField(ShopItemType.SHOP_CART_COUNT);
+            final double total = price * count;
+            mTotalPrice = mTotalPrice + total;
+        }
+
         //添加购物侧滑item布局
         addItemType(ShopItemType.SHOP_CART_ITEM, R.layout.item_shop_cart);
     }
+
+    public void setCartItemListener(ICartItemListener listener) {
+        this.mCartItemListener = listener;
+    }
+
+    public double getTotalPrice() {
+        return mTotalPrice;
+    }
+
 
     @Override
     protected void convert(MultipleViewHolder holder, final MultipleItemEntity entity) {
@@ -123,6 +144,63 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                         }
                     }
                 });
+
+
+                //添加加减事件
+                iconMinus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int currentCount = entity.getField(ShopItemType.SHOP_CART_COUNT);
+                        if (Integer.parseInt(tvCount.getText().toString()) > 1) {
+                            RestClient.builder()
+                                    .url("59e57875f757730a12fd0752/test/add/shop/cart")
+                                    .loader(mContext)
+                                    .params("count", currentCount)
+                                    .success(new ISuccess() {
+                                        @Override
+                                        public void onSuccess(String response) {
+                                            int countNum = Integer.parseInt(tvCount.getText().toString());
+                                            countNum--;
+                                            tvCount.setText(String.valueOf(countNum));
+                                            if (mCartItemListener != null) {
+                                                mTotalPrice = mTotalPrice - price;
+                                                final double itemTotal = countNum * price;
+                                                mCartItemListener.onItemClick(itemTotal);
+                                            }
+                                        }
+                                    })
+                                    .build()
+                                    .post();
+                        }
+                    }
+                });
+
+                iconPlus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int currentCount = entity.getField(ShopItemType.SHOP_CART_COUNT);
+                        RestClient.builder()
+                                .url("59e57875f757730a12fd0752/test/add/shop/cart")
+                                .loader(mContext)
+                                .params("count", currentCount)
+                                .success(new ISuccess() {
+                                    @Override
+                                    public void onSuccess(String response) {
+                                        int countNum = Integer.parseInt(tvCount.getText().toString());
+                                        countNum++;
+                                        tvCount.setText(String.valueOf(countNum));
+                                        if (mCartItemListener != null) {
+                                            mTotalPrice = mTotalPrice + price;
+                                            final double itemTotal = countNum * price;
+                                            mCartItemListener.onItemClick(itemTotal);
+                                        }
+                                    }
+                                })
+                                .build()
+                                .post();
+                    }
+                });
+
 
 
                 break;
