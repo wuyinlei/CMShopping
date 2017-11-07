@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -97,7 +98,7 @@ public class FastPay implements View.OnClickListener {
         CainiaoLogger.d("WX_PAY",weChatPrePayUrl);
 
         final IWXAPI iwxapi = CainiaoWeChat.geiInstance().getIWXAPI();
-        final String appId = Cainiao.getConfiguration(ConfigType.WE_CHAT_APP_ID);
+        final String appId = Cainiao.getConfiguration(ConfigType.WE_CHAT_APP_ID.name());
         iwxapi.registerApp(appId);
         RestClient.builder()
                 .url(weChatPrePayUrl)
@@ -136,8 +137,11 @@ public class FastPay implements View.OnClickListener {
             alPay(mOrderID);
             mDialog.cancel();
         } else if (id == R.id.btn_dialog_pay_wechat) {
+            //暂未开发微信支付功能
             weChatPay(mOrderID);
             mDialog.cancel();
+//            Toast.makeText(mActivity, "暂未开发微信支付功能", Toast.LENGTH_SHORT).show();
+//            mDialog.cancel();
         } else if (id == R.id.btn_dialog_pay_cancel) {
             mDialog.cancel();
         }

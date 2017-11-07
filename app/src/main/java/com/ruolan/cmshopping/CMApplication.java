@@ -35,6 +35,8 @@ public class CMApplication extends Application {
                 .withWebHost("http://github.com")
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontEcModule())
+                .withWeChatAppId("wxfcdcecd9df8e0faa")
+                .withWeChatAppSceret("a0560f75335b06e3ebea70f29ff219bf")
                 .withJavaScriptInterface("cainiao")
                 .withWebEvent("test", new TestEvent())
                 .configure();
