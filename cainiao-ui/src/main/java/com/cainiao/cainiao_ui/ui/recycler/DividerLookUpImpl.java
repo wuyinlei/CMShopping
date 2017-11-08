@@ -5,14 +5,15 @@ import com.choices.divider.DividerItemDecoration;
 
 /**
  * Created by wuyinlei on 2017/10/25.
+ *
  */
 
-public class DividerLookUpImpl implements DividerItemDecoration.DividerLookup {
+public class DividerLookupImpl implements DividerItemDecoration.DividerLookup {
 
     private final int COLOR;
     private final  int SIZE;
 
-    public DividerLookUpImpl(int color, int size) {
+    public DividerLookupImpl(int color, int size) {
         this.COLOR = color;
         this.SIZE = size;
     }
