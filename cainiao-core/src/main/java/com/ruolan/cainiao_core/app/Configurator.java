@@ -56,9 +56,9 @@ public class Configurator {
     }
 
     public final void configure() {
-        Utils.init(Cainiao.getApplicationContext());
         initIcons();
         CAINIAO_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);
+        Utils.init(Cainiao.getApplicationContext());
     }
 
     public static Configurator getInstance() {

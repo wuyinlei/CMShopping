@@ -54,6 +54,7 @@ public class DateDialogUtils {
                         mIDateListener.onDateChange(date);
                 }
             }
+
         });
 
         ll.addView(picker);
