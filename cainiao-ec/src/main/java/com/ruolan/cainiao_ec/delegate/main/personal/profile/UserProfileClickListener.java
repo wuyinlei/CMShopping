@@ -3,9 +3,12 @@ package com.ruolan.cainiao_ec.delegate.main.personal.profile;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.TextView;
 
+import com.cainiao.cainiao_ui.ui.date.DateDialogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
+import com.ruolan.cainiao_ec.R;
 import com.ruolan.cainiao_ec.delegate.main.personal.list.ListBean;
 
 /**
@@ -30,13 +33,37 @@ public class UserProfileClickListener extends SimpleClickListener {
         final int id = bean.getId();
         switch (id) {
             case 1:
-                //开始照相机或选择图片
+                //开始照相机或选择图片   修改头像
+
                 break;
             case 2:
+                //修改姓名
+
+
                 break;
             case 3:
+                //修改性别
+                getGenderDialog(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final TextView textView = (TextView) view.findViewById(R.id.tv_arrow_value);
+                        textView.setText(mGenders[which]);
+                        dialog.dismiss();
+                    }
+                });
+
                 break;
             case 4:
+                //修改生日
+                final DateDialogUtils dateDialogUtils = new DateDialogUtils();
+                dateDialogUtils.setIDateListener(new DateDialogUtils.IDateListener() {
+                    @Override
+                    public void onDateChange(String date) {
+                        final TextView te = (TextView) view.findViewById(R.id.tv_arrow_value);
+                        te.setText(date);
+                    }
+                });
+                dateDialogUtils.showDialog(DELEGATE.getContext());
                 break;
             default:
                 break;
