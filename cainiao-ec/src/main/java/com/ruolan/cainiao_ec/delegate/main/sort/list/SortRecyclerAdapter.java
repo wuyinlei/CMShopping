@@ -17,6 +17,8 @@ import com.ruolan.cainiao_ec.delegate.main.sort.content.ContentDelegate;
 
 import java.util.List;
 
+import me.yokeyword.fragmentation.SupportHelper;
+
 /**
  * Created by wuyinlei on 2017/10/30.
  *
@@ -104,9 +106,10 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
     }
 
     private void switchContent(ContentDelegate delegate){
-        final CainiaoDelegate contentDelegate = DELEGATE.findChildFragment(ContentDelegate.class);
-        if (contentDelegate != null){
-            contentDelegate.replaceFragment(delegate,false);
+        final CainiaoDelegate contentDelegate =
+                SupportHelper.findFragment(DELEGATE.getChildFragmentManager(), ContentDelegate.class);
+        if (contentDelegate != null) {
+            contentDelegate.getSupportDelegate().replaceFragment(delegate, false);
         }
     }
 

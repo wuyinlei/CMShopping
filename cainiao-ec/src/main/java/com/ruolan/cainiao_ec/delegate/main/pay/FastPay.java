@@ -9,7 +9,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -47,7 +46,7 @@ public class FastPay implements View.OnClickListener {
         mDialog.show();
         final Window window = mDialog.getWindow();
         if (window != null) {
-            window.setContentView(R.layout.dialog_pay_panel);
+            window.setContentView(R.layout.dialog_camera_panel);
             window.setGravity(Gravity.BOTTOM);
             window.setWindowAnimations(R.style.anim_panel_up_from_bottom);
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

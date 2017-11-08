@@ -24,7 +24,7 @@ public class WebDelegateImpl extends WebDelegate {
 
     public static WebDelegateImpl create(String url){
         final Bundle args = new Bundle();
-        args.putString(RouteKeys.URL.name(),url);
+        args.putString(RouteKeys.URL.name(), url);
         final WebDelegateImpl delegate = new WebDelegateImpl();
         delegate.setArguments(args);
         return delegate;
@@ -36,7 +36,6 @@ public class WebDelegateImpl extends WebDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        super.onBindView(savedInstanceState, rootView);
         if (getUrl() != null){
             //用原生的方式模拟Web跳转  并进行页面加载
 

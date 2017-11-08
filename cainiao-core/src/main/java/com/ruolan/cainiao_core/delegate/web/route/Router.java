@@ -41,8 +41,7 @@ public class Router {
 
         final CainiaoDelegate parentDelegate = delegate.getTopDelegate();
         final WebDelegateImpl webDelegate = WebDelegateImpl.create(url);
-        parentDelegate.start(webDelegate);
-
+        parentDelegate.getSupportDelegate().start(webDelegate);
 
         return true;
     }

@@ -1,9 +1,13 @@
 package com.ruolan.cainiao_ec.delegate.sign;
 
 import android.app.Activity;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.View;
 
 import com.ruolan.cainiao_core.delegate.CainiaoDelegate;
 import com.ruolan.cainiao_core.net.RestClient;
@@ -35,6 +39,11 @@ public class SignInDelegate extends CainiaoDelegate {
     @Override
     public Object setLayout() {
         return R.layout.delegate_sign_in;
+    }
+
+    @Override
+    public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
+
     }
 
 

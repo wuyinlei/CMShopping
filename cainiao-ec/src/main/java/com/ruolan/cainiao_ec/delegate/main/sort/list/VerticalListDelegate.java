@@ -43,7 +43,6 @@ public class VerticalListDelegate extends CainiaoDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        super.onBindView(savedInstanceState, rootView);
         initRecyclerView();
     }
 

@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.blankj.utilcode.util.Utils;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.ruolan.cainiao_core.delegate.web.event.Event;
@@ -55,6 +56,7 @@ public class Configurator {
     }
 
     public final void configure() {
+        Utils.init(Cainiao.getApplicationContext());
         initIcons();
         CAINIAO_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);
     }

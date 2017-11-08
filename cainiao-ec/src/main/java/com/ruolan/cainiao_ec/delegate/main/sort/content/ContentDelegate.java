@@ -59,7 +59,6 @@ public class ContentDelegate extends CainiaoDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        super.onBindView(savedInstanceState, rootView);
         initRecyclerView();
         initData();
     }

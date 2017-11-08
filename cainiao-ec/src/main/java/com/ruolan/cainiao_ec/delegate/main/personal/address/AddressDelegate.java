@@ -35,7 +35,6 @@ public class AddressDelegate extends CainiaoDelegate implements ISuccess {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        super.onBindView(savedInstanceState, rootView);
 
         RestClient.builder()
                 .url("59e57875f757730a12fd0752/test/address")
