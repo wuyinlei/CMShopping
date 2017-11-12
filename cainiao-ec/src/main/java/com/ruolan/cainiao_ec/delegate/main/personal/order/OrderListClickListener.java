@@ -7,6 +7,8 @@ import com.chad.library.adapter.base.listener.SimpleClickListener;
 
 /**
  * Created by wuyinlei on 2017/11/6.
+ *
+ * @function
  */
 
 public class OrderListClickListener extends SimpleClickListener {

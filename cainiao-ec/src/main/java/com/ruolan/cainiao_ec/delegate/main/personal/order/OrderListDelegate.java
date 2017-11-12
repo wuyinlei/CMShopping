@@ -4,9 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 
+import com.cainiao.cainiao_ui.ui.recycler.MultipleFields;
 import com.cainiao.cainiao_ui.ui.recycler.MultipleItemEntity;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.ruolan.cainiao_core.delegate.CainiaoDelegate;
 import com.ruolan.cainiao_core.net.RestClient;
 import com.ruolan.cainiao_core.net.callback.ISuccess;
@@ -64,7 +68,28 @@ public class OrderListDelegate extends CainiaoDelegate {
                                 new OrderListDataConverter().setJsonData(response).convert();
                         final OrderListAdapter adapter = new OrderListAdapter(data);
                         mRecyclerView.setAdapter(adapter);
-                        mRecyclerView.addOnItemTouchListener(new OrderListClickListener(OrderListDelegate.this));
+                        mRecyclerView.addOnItemTouchListener(new SimpleClickListener() {
+                            @Override
+                            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                                getSupportDelegate().start(OrderCommentDelegate.newInstance((String)
+                                        data.get(position).getField(MultipleFields.IMAGE_URL)));
+                            }
+
+                            @Override
+                            public void onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemChildLongClick(BaseQuickAdapter adapter, View view, int position) {
+
+                            }
+                        });
                     }
                 })
                 .build()
