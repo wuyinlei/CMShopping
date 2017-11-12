@@ -35,13 +35,13 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
 
 
     //不是直接调用方法
-    @NeedsPermission(Manifest.permission.CAMERA)
+    @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission_group.STORAGE})
     void startCamera() {
         CainiaoCamera.start(this);
     }
 
     //这个是真正的调用方法
-    public void startCameraWithCheck(){
+    public void startCameraWithCheck() {
         PermissionCheckerDelegatePermissionsDispatcher.startCameraWithCheck(this);
     }
 
@@ -49,16 +49,16 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        PermissionCheckerDelegatePermissionsDispatcher.onRequestPermissionsResult(this,requestCode,grantResults);
+        PermissionCheckerDelegatePermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 
 
-    @OnPermissionDenied(Manifest.permission.CAMERA)
+    @OnPermissionDenied({Manifest.permission.CAMERA,Manifest.permission_group.STORAGE})
     void onCameraDenied() {
         Toast.makeText(getContext(), "不允许拍照", Toast.LENGTH_LONG).show();
     }
 
-    @OnNeverAskAgain(Manifest.permission.CAMERA)
+    @OnNeverAskAgain({Manifest.permission.CAMERA,Manifest.permission_group.STORAGE})
     void onCameraNever() {
         Toast.makeText(getContext(), "永久拒绝权限", Toast.LENGTH_LONG).show();
     }
@@ -113,8 +113,7 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
                 case RequestCode.CROP_PHOTO:
                     final Uri cropUri = UCrop.getOutput(data);
                     //拿到剪裁后的数据进行处理
-                    @SuppressWarnings("unchecked")
-                    final IGlobalCallback<Uri> callback = CallbackManager
+                    @SuppressWarnings("unchecked") final IGlobalCallback<Uri> callback = CallbackManager
                             .getInstance()
                             .getCallback(CallbackType.ON_CROP);
                     if (callback != null) {

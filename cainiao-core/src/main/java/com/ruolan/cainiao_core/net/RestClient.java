@@ -152,6 +152,17 @@ public class RestClient {
 //
     }
 
+    public final void upload(){
+        if (BODY == null){
+            request(HttpMethod.UPLOAD);
+        }else {
+            if (PARAMS.isEmpty()) {
+                throw new RuntimeException("params must be null!");
+            }
+            request(HttpMethod.PUT_RAW);
+        }
+    }
+
     public final void put() {
         if (BODY == null) {
             request(HttpMethod.PUT);
