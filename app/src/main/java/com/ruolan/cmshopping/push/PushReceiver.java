@@ -42,7 +42,7 @@ public class PushReceiver extends BroadcastReceiver {
 
         } else if (pushAction.equals(JPushInterface.ACTION_NOTIFICATION_OPENED)) {
             //打开相应的Notification
-        onOpenNotification(context,bundle);
+            onOpenNotification(context, bundle);
 
         }
 

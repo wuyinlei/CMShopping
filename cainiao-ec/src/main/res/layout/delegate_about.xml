@@ -4,15 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:background="@android:color/holo_orange_dark"
+        android:paddingTop="24dp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="关于"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"/>
+    </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tv_about"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:lineSpacingExtra="5dp"
         android:padding="@dimen/dp_10"
         android:textColor="@color/we_chat_black"
-        android:textSize="18sp"
+        android:textSize="24sp"
         tools:text="@string/app_name"/>
 
 </LinearLayout>

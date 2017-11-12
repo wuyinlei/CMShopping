@@ -2,6 +2,7 @@ package com.ruolan.cmshopping;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
@@ -9,6 +10,9 @@ import com.ruolan.cainiao_core.app.Cainiao;
 import com.ruolan.cainiao_core.delegate.web.event.TestEvent;
 import com.ruolan.cainiao_core.net.interceptor.AddCookieInterceptor;
 import com.ruolan.cainiao_core.net.interceptor.DebugInterceptor;
+import com.ruolan.cainiao_core.util.callback.CallbackManager;
+import com.ruolan.cainiao_core.util.callback.CallbackType;
+import com.ruolan.cainiao_core.util.callback.IGlobalCallback;
 import com.ruolan.cainiao_ec.database.DatabaseManager;
 import com.ruolan.cainiao_ec.icon.FontEcModule;
 
@@ -50,6 +54,26 @@ public class CMApplication extends Application {
         JPushInterface.setDebugMode(true);
 
         JPushInterface.init(this);
+
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.TAG_OPEN_PUSH, new IGlobalCallback() {
+                    @Override
+                    public void executeCallback(@Nullable Object args) {
+                        if (JPushInterface.isPushStopped(Cainiao.getApplicationContext())) {
+                            //开启极光推送
+                            JPushInterface.setDebugMode(true);
+                            JPushInterface.init(Cainiao.getApplicationContext());
+                        }
+                    }
+                })
+                .addCallback(CallbackType.TAG_STOP_PUSH, new IGlobalCallback() {
+                    @Override
+                    public void executeCallback(@Nullable Object args) {
+                        if (!JPushInterface.isPushStopped(Cainiao.getApplicationContext())) {
+                            JPushInterface.stopPush(Cainiao.getApplicationContext());
+                        }
+                    }
+                });
 
     }
 
