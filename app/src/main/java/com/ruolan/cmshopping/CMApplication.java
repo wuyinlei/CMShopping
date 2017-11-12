@@ -12,6 +12,8 @@ import com.ruolan.cainiao_core.net.interceptor.DebugInterceptor;
 import com.ruolan.cainiao_ec.database.DatabaseManager;
 import com.ruolan.cainiao_ec.icon.FontEcModule;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 /**
  * Created by wuyinlei on 2017/7/10.
@@ -44,6 +46,10 @@ public class CMApplication extends Application {
         DatabaseManager.getInstance().init(this);
 
         initStetho(this);
+
+        JPushInterface.setDebugMode(true);
+
+        JPushInterface.init(this);
 
     }
 

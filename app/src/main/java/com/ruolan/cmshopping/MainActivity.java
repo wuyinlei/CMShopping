@@ -17,6 +17,7 @@ import com.ruolan.cainiao_ec.delegate.sign.ISignListener;
 import com.ruolan.cainiao_ec.delegate.sign.SignInDelegate;
 import com.ruolan.cainiao_ec.delegate.sign.SignUpDelegate;
 
+import cn.jpush.android.api.JPushInterface;
 import qiu.niorgai.StatusBarCompat;
 
 public class MainActivity extends ProxyActivity implements ISignListener, ILauncherListener {
@@ -34,6 +35,20 @@ public class MainActivity extends ProxyActivity implements ISignListener, ILaunc
 
         StatusBarCompat.translucentStatusBar(this,true);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
+    }
+
+
 
     @Override
     public CainiaoDelegate setRootDelegate() {
