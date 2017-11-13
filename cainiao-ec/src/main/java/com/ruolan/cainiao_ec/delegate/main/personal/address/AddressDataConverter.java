@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 /**
  * Created by wuyinlei on 2017/11/7.
+ *
+ * @function
  */
 
 public class AddressDataConverter extends DataConverter {

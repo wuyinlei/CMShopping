@@ -43,6 +43,7 @@ public class CameraHandler implements View.OnClickListener {
             window.setContentView(R.layout.dialog_camera_panel);
             window.setGravity(Gravity.BOTTOM);
             window.setWindowAnimations(R.style.anim_panel_up_from_bottom);
+//            设置背景颜色,只有设置了这个属性,宽度才能全屏MATCH_PARENT
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             //设置属性
             final WindowManager.LayoutParams params = window.getAttributes();

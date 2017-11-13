@@ -15,6 +15,7 @@ import com.ruolan.cainiao_core.util.callback.IGlobalCallback;
 import com.ruolan.cainiao_core.util.camera.CainiaoCamera;
 import com.ruolan.cainiao_core.util.camera.CameraImageBean;
 import com.ruolan.cainiao_core.util.camera.RequestCode;
+import com.ruolan.cainiao_core.util.scanner.ScannerDelegate;
 import com.yalantis.ucrop.UCrop;
 
 import permissions.dispatcher.NeedsPermission;
@@ -52,13 +53,28 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
         PermissionCheckerDelegatePermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 
+    //扫描二维码(不直接调用)
+    @NeedsPermission(Manifest.permission.CAMERA)
+    void startScan(BaseDelegate delegate) {
+        delegate.getSupportDelegate().startForResult(new ScannerDelegate(), RequestCode.SCAN);
+    }
 
-    @OnPermissionDenied({Manifest.permission.CAMERA,Manifest.permission_group.STORAGE})
+    /**
+     * 开启二维码扫描 进行公开调用
+     *
+     * @param delegate BaseDelegate
+     */
+    public void startScanWithCheck(BaseDelegate delegate) {
+        PermissionCheckerDelegatePermissionsDispatcher.startScanWithCheck(this, delegate);
+    }
+
+
+    @OnPermissionDenied({Manifest.permission.CAMERA, Manifest.permission_group.STORAGE})
     void onCameraDenied() {
         Toast.makeText(getContext(), "不允许拍照", Toast.LENGTH_LONG).show();
     }
 
-    @OnNeverAskAgain({Manifest.permission.CAMERA,Manifest.permission_group.STORAGE})
+    @OnNeverAskAgain({Manifest.permission.CAMERA, Manifest.permission_group.STORAGE})
     void onCameraNever() {
         Toast.makeText(getContext(), "永久拒绝权限", Toast.LENGTH_LONG).show();
     }

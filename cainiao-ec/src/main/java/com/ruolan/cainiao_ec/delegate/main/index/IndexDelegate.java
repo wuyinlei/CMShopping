@@ -9,16 +9,21 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.cainiao.cainiao_ui.ui.recycler.BaseDecoration;
 import com.cainiao.cainiao_ui.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.ruolan.cainiao_core.delegate.bottom.BottomItemDelegate;
+import com.ruolan.cainiao_core.util.callback.CallbackManager;
+import com.ruolan.cainiao_core.util.callback.CallbackType;
+import com.ruolan.cainiao_core.util.callback.IGlobalCallback;
 import com.ruolan.cainiao_ec.R;
 import com.ruolan.cainiao_ec.R2;
 import com.ruolan.cainiao_ec.delegate.main.EcBottomDelegate;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by wuyinlei on 2017/10/16.
@@ -41,6 +46,11 @@ public class IndexDelegate extends BottomItemDelegate {
     AppCompatEditText mSearchView = null;
 
     private RefreshHandler mRefreshHandler = null;
+
+    @OnClick(R2.id.icon_index_scan)
+    void onClickScanQrCode() {
+        startScanWithCheck(this.getParentDelegate());
+    }
 
     private void initRefreshLayout() {
         mRefreshLayout.setColorSchemeResources(
@@ -79,6 +89,15 @@ public class IndexDelegate extends BottomItemDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mRefreshHandler = RefreshHandler.create(mRefreshLayout,mRecyclerView,new IndexDataConvert());
+
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
+                    @Override
+                    public void executeCallback(@Nullable String args) {
+                        Toast.makeText(getContext(), "得到的二维码是" + args, Toast.LENGTH_LONG).show();
+                    }
+                });
+
     }
 
 
