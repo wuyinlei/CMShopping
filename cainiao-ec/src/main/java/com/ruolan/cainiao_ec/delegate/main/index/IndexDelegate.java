@@ -21,6 +21,7 @@ import com.ruolan.cainiao_core.util.callback.IGlobalCallback;
 import com.ruolan.cainiao_ec.R;
 import com.ruolan.cainiao_ec.R2;
 import com.ruolan.cainiao_ec.delegate.main.EcBottomDelegate;
+import com.ruolan.cainiao_ec.delegate.main.index.search.SearchDelegate;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,7 +32,7 @@ import butterknife.OnClick;
  * @function 首页数据
  */
 
-public class IndexDelegate extends BottomItemDelegate {
+public class IndexDelegate extends BottomItemDelegate implements View.OnFocusChangeListener {
 
 
     @BindView(R2.id.rv_index)
@@ -98,8 +99,15 @@ public class IndexDelegate extends BottomItemDelegate {
                     }
                 });
 
+        mSearchView.setOnFocusChangeListener(this);
+
     }
 
 
-
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+            getParentDelegate().getSupportDelegate().start(new SearchDelegate());
+        }
+    }
 }
