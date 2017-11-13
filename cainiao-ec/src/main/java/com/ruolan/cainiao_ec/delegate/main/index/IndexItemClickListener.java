@@ -2,13 +2,17 @@ package com.ruolan.cainiao_ec.delegate.main.index;
 
 import android.view.View;
 
+import com.cainiao.cainiao_ui.ui.recycler.MultipleFields;
+import com.cainiao.cainiao_ui.ui.recycler.MultipleItemEntity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.ruolan.cainiao_core.delegate.CainiaoDelegate;
-import com.ruolan.cainiao_ec.detail.GoodsDetailDelegate;
+import com.ruolan.cainiao_ec.delegate.detail.GoodsDetailDelegate;
 
 /**
  * Created by wuyinlei on 2017/10/25.
+ *
+ * @function
  */
 
 public class IndexItemClickListener extends SimpleClickListener {
@@ -25,8 +29,10 @@ public class IndexItemClickListener extends SimpleClickListener {
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        final GoodsDetailDelegate detailDelegate = GoodsDetailDelegate.create();
-        DELEGATE.getSupportDelegate().start(detailDelegate);
+        final MultipleItemEntity entity = (MultipleItemEntity) baseQuickAdapter.getData().get(position);
+        final int goodsId = entity.getField(MultipleFields.ID);
+        final GoodsDetailDelegate delegate = GoodsDetailDelegate.create(goodsId);
+        DELEGATE.getSupportDelegate().start(delegate);
     }
 
     @Override
